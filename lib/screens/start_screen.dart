@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:health_care_app/constants/color_constants.dart';
 import 'package:health_care_app/provider/app_mode_provider.dart';
 import 'package:health_care_app/screens/components/doctor_image_container.dart';
 import 'package:health_care_app/screens/components/home_navigation_container.dart';
@@ -15,9 +16,10 @@ class _StartScreenState extends ConsumerState<StartScreen> {
   @override
   Widget build(BuildContext context) {
     Color appScaffoldColor = ref.watch(appScaffoldColorProvider);
-    return   Scaffold(
-      backgroundColor:appScaffoldColor ,
-        body: const SafeArea(
+    return const   Scaffold(
+      // appScaffoldColor
+      backgroundColor:appBlack ,
+        body:  SafeArea(
           child: Column(
             children: [
               Flexible(
