@@ -16,10 +16,9 @@ class _StartScreenState extends ConsumerState<StartScreen> {
   @override
   Widget build(BuildContext context) {
     Color appScaffoldColor = ref.watch(appScaffoldColorProvider);
-    return const   Scaffold(
-      // appScaffoldColor
-      backgroundColor:appBlack ,
-        body:  SafeArea(
+    return    Scaffold(
+      backgroundColor:appScaffoldColor ,
+        body:  const SafeArea(
           child: Column(
             children: [
               Flexible(
