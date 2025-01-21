@@ -18,16 +18,24 @@ class BottomInputContainer extends ConsumerStatefulWidget {
 }
 
 class _InputTextContainerState extends ConsumerState<BottomInputContainer> {
-
-
-  void addCheckbox(state) {
-    state = [...state, false];
+  void _addNewMedicine(String medicineName) {
+    if (medicineName.isNotEmpty) {
+      ref
+          .read(medicineListProvider.notifier)
+          .update((state) => [...state, medicineName]);
+      ref
+          .read(checkBoxValueListProvider.notifier)
+          .update((state) => [...state, isDisabled]);
+      ref
+          .read(textDecorationValueListProvider.notifier)
+          .update((state) => [...state, textDecorationValueTwo]);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     Color appContainerColor = ref.watch(appContainerColorProvider);
-    
+
     TextEditingController textController = ref.watch(textControllerProvider);
     return Container(
       height: 400,
@@ -49,24 +57,18 @@ class _InputTextContainerState extends ConsumerState<BottomInputContainer> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                      final text = textController.text;
-                      textController.clear();
-                      ref
-                          .read(medicineListProvider.notifier)
-                          .update((state) => [...state, text]);
-                      ref
-                          .read(checkBoxValueListProvider.notifier)
-                          .update(
-                              (state) => [...state, isDisabled]);
-                      ref
-                          .read(
-                              textDecorationValueListProvider.notifier)
-                          .update((state) =>
-                              [...state, textDecorationValueTwo]);
-                    },
-                    child: const AddMedicineButton())
+                  onTap: () {
+                    Navigator.pop(context);
+                    final text = textController.text
+                        .trim(); // Ensure text is trimmed to remove unwanted spaces.
+                    textController.clear();
+
+                    // Simplify the state update by creating a method that updates all relevant states.
+                    _addNewMedicine(text);
+                  },
+                  child:
+                      const AddMedicineButton(), // Ensures the button widget is correctly instantiated.
+                )
               ],
             )
           ],

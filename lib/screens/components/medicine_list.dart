@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:health_care_app/constants/value_constants.dart';
+// import 'package:health_care_app/constants/value_constants.dart';
 import 'package:health_care_app/provider/text_list_provider.dart';
 import 'package:health_care_app/provider/value_provider.dart';
 import 'package:health_care_app/widgets/common/list_item_delete_button.dart';
@@ -56,23 +57,24 @@ class _MedicineListState extends ConsumerState<MedicineList> {
             child: Column(
               children: [
                 MedicineListItems(
-                    textDecoration: checkBoxTextDecorationValueList[index],
-                    value: medicineCheckBoxValueList[index],
-                    onChanged: (dynamic value) {
-                      ref.read(checkBoxValueListNotifier).update((state) {
-                        List<bool> newState = List.from(state);
-                        newState[index] = value;
-                        return newState;
-                      });
-                      ref.read(textDecorationValueListProvider.notifier).update((state) {
-                      List<TextDecoration> newState = List.from(state);
-                      newState[index] = state[index] == textDecorationValueTwo
-                          ? textDecorationValueOne
-                          : textDecorationValueTwo;
-                      return newState;
-                    });
-                    },
-                    text: medicineList[index]),
+  textDecoration: checkBoxTextDecorationValueList[index],
+  value: medicineCheckBoxValueList[index],
+  onChanged: (dynamic value) {  // Ensuring the callback expects a boolean.
+    ref.read(checkBoxValueListNotifier).update((state) {
+      List<bool> newState = List.from(state);
+      newState[index] = value;
+      return newState;
+    });
+    ref.read(textDecorationValueListProvider.notifier).update((state) {
+      List<TextDecoration> newState = List.from(state);
+      newState[index] = state[index] == textDecorationValueTwo
+          ? textDecorationValueOne
+          : textDecorationValueTwo;
+      return newState;
+    });
+  },
+  text: medicineList[index],
+),
                 const SpaceBetweenColumnChildren(height: 10)
               ],
             ),
