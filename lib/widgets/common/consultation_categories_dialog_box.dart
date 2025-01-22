@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:health_care_app/constants/color_constants.dart';
 
-class ConsultationCategoriesDialogBox extends StatefulWidget {
+
+class ConsultationCategoriesDialogBox extends ConsumerStatefulWidget {
   final double height;
   final double width;
   final Color backgroundColor;
@@ -9,21 +11,22 @@ class ConsultationCategoriesDialogBox extends StatefulWidget {
 
   const ConsultationCategoriesDialogBox({
     super.key,
-    this.height = 700,
+    this.height = 500,
     this.width = 350,
     this.backgroundColor = appWhite,
     required this.child 
   });
 
   @override
-  State<ConsultationCategoriesDialogBox> createState() =>
+  ConsumerState<ConsultationCategoriesDialogBox> createState() =>
       _ConsultationCategoriesDialogBoxState();
 }
 
 class _ConsultationCategoriesDialogBoxState
-    extends State<ConsultationCategoriesDialogBox> {
+    extends ConsumerState<ConsultationCategoriesDialogBox> {
   @override
   Widget build(BuildContext context) {
+    
     return  Container(
         decoration: const BoxDecoration(
           color: Color.fromARGB(112, 47, 42, 42),
