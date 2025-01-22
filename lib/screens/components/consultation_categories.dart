@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:health_care_app/constants/color_constants.dart';
+
 import 'package:health_care_app/constants/path_constants.dart';
 import 'package:health_care_app/provider/app_mode_provider.dart';
 import 'package:health_care_app/screens/components/consultation_categories_item_content.dart';
