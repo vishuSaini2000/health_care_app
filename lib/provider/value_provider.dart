@@ -4,6 +4,6 @@ import 'package:health_care_app/constants/value_constants.dart';
 
 final groupValueProvider = StateProvider<int>((ref)=>groupValue);
 final switchValueProvider = StateProvider<bool>((ref)=> isEnabled);
-final checkBoxValueListProvider = StateProvider<List<bool>>((ref)=>medicineCheckValueList);
+final checkBoxValueProvider = StateProvider<bool>((ref)=>isDisabled);
 final textDecorationValueListProvider = StateProvider<List<TextDecoration>>((ref)=>textDecorationValueList);
-final textDecorationValueProvider = StateProvider<TextDecoration>((ref)=>textDecorationValueOne);
+final textDecorationValueProvider = StateProvider<TextDecoration>((ref)=>textDecorationValueTwo);

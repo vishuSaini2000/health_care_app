@@ -6,11 +6,22 @@ class ListItemDeleteButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: appRed,
-      alignment: Alignment.centerRight,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: const Icon(Icons.delete, color: appWhite),
+    return Row(
+      children: [
+        Container(
+        color: appRed,
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: const Icon(Icons.delete, color: appWhite),
+      ),
+        Container(
+        color: appGreen,
+        alignment: Alignment.centerRight,
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: const Icon(Icons.delete, color: appWhite),
+      ),
+
+      ],
     );
   }
 }

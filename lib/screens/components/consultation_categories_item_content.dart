@@ -25,7 +25,6 @@ class _ConsultationCategoriesItemContentState
     extends ConsumerState<ConsultationCategoriesItemContent> {
   @override
   Widget build(BuildContext context) {
-    // Color appTextColor = ref.watch(appTextColorProvider);
    
     return Padding(
       padding: const  EdgeInsets.all(30),

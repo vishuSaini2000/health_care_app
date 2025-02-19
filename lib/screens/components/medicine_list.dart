@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:health_care_app/constants/value_constants.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:health_care_app/constants/color_constants.dart';
+
 import 'package:health_care_app/provider/text_list_provider.dart';
-import 'package:health_care_app/provider/value_provider.dart';
-import 'package:health_care_app/widgets/common/list_item_delete_button.dart';
+
+// import 'package:health_care_app/widgets/common/list_item_delete_button.dart';
 import 'package:health_care_app/widgets/common/medicine_list_items.dart';
 import 'package:health_care_app/widgets/common/space_between_column_children.dart';
 
@@ -15,12 +17,6 @@ class MedicineList extends ConsumerStatefulWidget {
 }
 
 class _MedicineListState extends ConsumerState<MedicineList> {
-  final checkBoxValueListNotifier =
-      checkBoxValueListProvider.notifier;
-  final checkBoxTextDecorationValueListNotifier =
-      textDecorationValueListProvider.notifier;
-  final checkBoxTextDecorationValueNotifier = textDecorationValueProvider.notifier;
-
   void changeValue(notifier, value) {
     notifier.state = value;
   }
@@ -28,55 +24,54 @@ class _MedicineListState extends ConsumerState<MedicineList> {
   @override
   Widget build(BuildContext context) {
     List medicineList = ref.watch(medicineListProvider);
-    List<bool> medicineCheckBoxValueList =
-        ref.watch(checkBoxValueListProvider);
-    List<TextDecoration> checkBoxTextDecorationValueList =
-        ref.watch(textDecorationValueListProvider);
+    // final SlidableController slidableController = SlidableController();
+
     return Container(
-        padding: const EdgeInsets.all(10),
-        height: 200,
-        width: double.infinity,
-        decoration: const BoxDecoration(color: Colors.transparent),
-        child: ListView.builder(
-          itemCount: medicineList.length,
-          itemBuilder: (context, index) => Dismissible(
-             key: Key(medicineList[index].toString()), // Unique key for Dismissible
-            onDismissed: (direction) {
-              // Handling item removal
-              setState(() {
-                medicineList.removeAt(index);
-              });
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text("Medicine Deleted"),
-                ),
-              );
-            },
-            background:const  ListItemDeleteButton(),
-            child: Column(
-              children: [
-                MedicineListItems(
-                    textDecoration: checkBoxTextDecorationValueList[index],
-                    value: medicineCheckBoxValueList[index],
-                    onChanged: (dynamic value) {
-                      ref.read(checkBoxValueListNotifier).update((state) {
-                        List<bool> newState = List.from(state);
-                        newState[index] = value;
-                        return newState;
-                      });
-                      ref.read(textDecorationValueListProvider.notifier).update((state) {
-                      List<TextDecoration> newState = List.from(state);
-                      newState[index] = state[index] == textDecorationValueTwo
-                          ? textDecorationValueOne
-                          : textDecorationValueTwo;
-                      return newState;
+      padding: const EdgeInsets.all(10),
+      height: 200,
+      width: double.infinity,
+      decoration: const BoxDecoration(color: Colors.transparent),
+      child: ListView.builder(
+        itemCount: medicineList.length,
+        itemBuilder: (context, index) => Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Slidable(
+              // key: Key(medicineList[index].toString()),
+              // controller: slidableController,
+              endActionPane:
+                  ActionPane(motion: const BehindMotion(), children: [
+                SlidableAction(
+                  onPressed: (context) {
+                    ref.read(medicineListProvider.notifier).update((state) {
+                      final newList = List.of(
+                          state); // Create a new list to trigger state update
+                      newList.removeAt(index);
+                      return newList;
                     });
-                    },
-                    text: medicineList[index]),
-                const SpaceBetweenColumnChildren(height: 10)
-              ],
+                  },
+                  backgroundColor: appRed,
+                  icon: Icons.delete,
+                  label: 'Delete',
+                ),
+                SlidableAction(
+                  foregroundColor: appWhite,
+                  onPressed: (context){
+                    Slidable.of(context)?.close();
+                  },
+                  backgroundColor: appGrey,
+                  icon: Icons.close,
+                  label: 'Close',
+                )
+              ]),
+              child: MedicineListItems(
+                text: medicineList[index].text,
+              ),
             ),
-          ),
-        ));
+            const SpaceBetweenColumnChildren(height: 10)
+          ],
+        ),
+      ),
+    );
   }
 }

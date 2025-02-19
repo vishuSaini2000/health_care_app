@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:health_care_app/constants/color_constants.dart';
+// import 'package:health_care_app/constants/color_constants.dart';
 import 'package:health_care_app/constants/path_constants.dart';
+// import 'package:health_care_app/constants/value_constants.dart';
 import 'package:health_care_app/provider/app_mode_provider.dart';
+// import 'package:health_care_app/provider/text_list_provider.dart';
+import 'package:health_care_app/provider/value_provider.dart';
 import 'package:health_care_app/widgets/common/app_text_widget.dart';
 import 'package:health_care_app/widgets/common/space_between_row_childre.dart';
 
 class MedicineListItems extends ConsumerStatefulWidget {
   final String text;
-  final TextDecoration? textDecoration;
-  final bool value;
-  final ValueChanged onChanged;
-
+  
   const MedicineListItems(
       {super.key,
       required this.text,
-      this.textDecoration,
-      required this.value,
-      required this.onChanged});
+      });
 
   @override
   ConsumerState<MedicineListItems> createState() => _MedicineListItemsState();
+}
+
+final checkBoxValueNotifier = checkBoxValueProvider.notifier;
+final checkBoxTextDecorationValueNotifier =
+    textDecorationValueProvider.notifier;
+
+void changeValue(notifier, value) {
+  notifier.state = value;
 }
 
 class _MedicineListItemsState extends ConsumerState<MedicineListItems> {
@@ -29,8 +35,7 @@ class _MedicineListItemsState extends ConsumerState<MedicineListItems> {
     Color appListContainerColor = ref.watch(appListContainerColorProvider);
     Color appContainerColor = ref.watch(appContainerColorProvider);
     Color appTextColor = ref.watch(appTextColorProvider);
-    // Color mediciineListItemsRowTextColor =
-    //     ref.watch(mediciineListItemsRowTextColorProvider);
+        ref.watch(textDecorationValueProvider);
     return Container(
       padding: const EdgeInsets.all(20),
       height: 80,
@@ -60,16 +65,15 @@ class _MedicineListItemsState extends ConsumerState<MedicineListItems> {
               AppTextWidget(
                   fontColor: appTextColor,
                   text: widget.text,
-                  textDecoration: widget.textDecoration,
                   fontWeight: FontWeight.bold,
                   fontSize: 20),
             ],
           ),
-          Checkbox(
-            activeColor: appGreen,
-            value: widget.value,
-            onChanged: widget.onChanged,
-          )
+          // Checkbox(
+          //   activeColor: appGreen,
+          //   value: widget.value,
+          //   onChanged: widget.onChanged
+          // )
         ],
       ),
     );
