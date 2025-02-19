@@ -12,12 +12,10 @@ import 'package:health_care_app/widgets/common/space_between_column_children.dar
 
 class BottomInputContainer extends ConsumerStatefulWidget {
   const BottomInputContainer({super.key});
-
   @override
   ConsumerState<BottomInputContainer> createState() =>
       _InputTextContainerState();
 }
-
 class _InputTextContainerState extends ConsumerState<BottomInputContainer> {
   final medicineListNotifier = medicineListProvider.notifier;
   final checkBoxValueNotifier = checkBoxValueProvider.notifier;
@@ -30,11 +28,6 @@ class _InputTextContainerState extends ConsumerState<BottomInputContainer> {
   void changeValue(notifier, value) {
     notifier.state = value;
   }
-
-  void onChange(){
-    
-  }
-
   @override
   Widget build(BuildContext context) {
     Color appContainerColor = ref.watch(appContainerColorProvider);
@@ -62,10 +55,7 @@ class _InputTextContainerState extends ConsumerState<BottomInputContainer> {
                 GestureDetector(
                     onTap: () {
                       Navigator.pop(context);
-                   
                       final newText = textController.text;
-                    
-
                       ref.read(medicineListProvider.notifier).update((state) =>
                           [
                             ...state,
