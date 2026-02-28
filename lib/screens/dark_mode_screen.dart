@@ -65,8 +65,6 @@ class _DarkModeScreenState extends ConsumerState<DarkModeScreen> {
     changeColor(ref.read(_appListContainerColorNotifier),appGrey);
     changeColor(ref.read(_appBottomBorderColorNotifier), appGrey);
     
-    
-    
   }
 
   void lightMode() {

@@ -35,7 +35,7 @@ class _ClientProfileRowState extends ConsumerState<ClientProfileRow> {
                 width: 25,
               ),
               AppTextWidget(
-                text: 'Hi, Scarlett Jhonson',
+                text: 'Hi, Veena Saini',
                 fontColor: appTextColor,
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
