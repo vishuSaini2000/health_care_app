@@ -21,8 +21,6 @@ class _DisplaySectionState extends ConsumerState<DisplaySection> {
     Color appTextColor = ref.watch(appTextColorProvider);
     Color appIconColor = ref.watch(appIconColorProvider); 
     Color appHeadingTextColor = ref.watch(appHeadingTextColorProvider);
-
-    
     return SettingSectionCategory(
       color: appSectionContainerColor,
       myColumn: Column(
