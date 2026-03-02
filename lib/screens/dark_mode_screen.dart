@@ -3,12 +3,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:health_care_app/constants/color_constants.dart';
 import 'package:health_care_app/constants/dark_color_constants.dart';
 import 'package:health_care_app/constants/path_constants.dart';
+import 'package:health_care_app/constants/value_constants.dart';
 import 'package:health_care_app/provider/app_mode_provider.dart';
 import 'package:health_care_app/provider/image_provider.dart';
 import 'package:health_care_app/provider/value_provider.dart';
 import 'package:health_care_app/screens/components/app_bar.dart';
 import 'package:health_care_app/screens/settings_screen.dart';
 import 'package:health_care_app/widgets/common/radio_button_row.dart';
+import 'package:health_care_app/widgets/common/space_between_column_children.dart';
 import 'package:health_care_app/widgets/common/sub_section_category_sub_heading.dart';
 import 'package:health_care_app/widgets/common/sub_sections_category_container.dart';
 import 'package:health_care_app/widgets/common/sub_sections_category_heading.dart';
@@ -28,16 +30,20 @@ class _DarkModeScreenState extends ConsumerState<DarkModeScreen> {
   final _appContainerColorNotifier = appContainerColorProvider.notifier;
   final _appIconColorNotifier = appIconColorProvider.notifier;
   final _appHeadingTextColorNotifier = appHeadingTextColorProvider.notifier;
-  final _appSectionContainerColorNotifier = appSectionContainerColorProvider.notifier;
-  final _appIconCircleAvatarBgColorNotifier = appIconCricleAvatarBgColorProvider.notifier;
+  final _appSectionContainerColorNotifier =
+      appSectionContainerColorProvider.notifier;
+  final _appIconCircleAvatarBgColorNotifier =
+      appIconCricleAvatarBgColorProvider.notifier;
   final _appTypeBarBgColorNotifier = appTypeBarBgColorProvider.notifier;
   final _appBoxShadowColorNotifier = appBoxShadowColorProvider.notifier;
-  final _appCategoriesCircleAvatarBgColorNotifier = appCategoriesCircleAvatarBgColorProvider.notifier;
+  final _appCategoriesCircleAvatarBgColorNotifier =
+      appCategoriesCircleAvatarBgColorProvider.notifier;
   final _appUniqueTextColorNotifier = appUniqueTextColorProvider.notifier;
   final _appListContainerColorNotifier = appListContainerColorProvider.notifier;
   final _appBottomBorderColorNotifier = appBottomBorderColorProvider.notifier;
+  final _iconNotifier = iconProvider.notifier;
 
-  void changeImage(notifier,image){
+  void changeImage(notifier, image) {
     notifier.state = image;
   }
 
@@ -48,54 +54,54 @@ class _DarkModeScreenState extends ConsumerState<DarkModeScreen> {
   void changeColor(notifier, color) {
     notifier.state = color;
   }
-
   void darkMode() {
-    changeImage(ref.read(_doctorContainerImageNotifier),firstScreenBackgroundImageDarkMode);
+    changeImage(ref.read(_doctorContainerImageNotifier),
+        firstScreenBackgroundImageDarkMode);
     changeColor(ref.read(_appscaffoldColorNotifier), appBlack);
-    changeColor(ref.read(_appTextColorNotifier),appWhite);
-    changeColor(ref.read(_appContainerColorNotifier),appDarkNavyBlue);
-    changeColor(ref.read(_appIconColorNotifier),appWhite);
-    changeColor(ref.read(_appHeadingTextColorNotifier),appGrey);
+    changeColor(ref.read(_appTextColorNotifier), appWhite);
+    changeColor(ref.read(_appContainerColorNotifier), appDarkNavyBlue);
+    changeColor(ref.read(_appIconColorNotifier), appWhite);
+    changeColor(ref.read(_appHeadingTextColorNotifier), appGrey);
     changeColor(ref.read(_appSectionContainerColorNotifier), appDarkNavyBlue);
-    changeColor(ref.read(_appIconCircleAvatarBgColorNotifier),appGrey);
-    changeColor(ref.read(_appTypeBarBgColorNotifier),appGrey);
-    changeColor(ref.read(_appBoxShadowColorNotifier),appLightBlue);
-    changeColor(ref.read(_appCategoriesCircleAvatarBgColorNotifier),appDarkNavyBlue);
-    changeColor(ref.read(_appUniqueTextColorNotifier),appGrey);
-    changeColor(ref.read(_appListContainerColorNotifier),appGrey);
+    changeColor(ref.read(_appIconCircleAvatarBgColorNotifier), appGrey);
+    changeColor(ref.read(_appTypeBarBgColorNotifier), appGrey);
+    changeColor(ref.read(_appBoxShadowColorNotifier), appLightBlue);
+    changeColor(
+        ref.read(_appCategoriesCircleAvatarBgColorNotifier), appDarkNavyBlue);
+    changeColor(ref.read(_appUniqueTextColorNotifier), appGrey);
+    changeColor(ref.read(_appListContainerColorNotifier), appGrey);
     changeColor(ref.read(_appBottomBorderColorNotifier), appGrey);
-    
   }
 
   void lightMode() {
-    changeImage(ref.read(_doctorContainerImageNotifier),firstScreenBackgroundImageLightMode);
+    changeImage(ref.read(_doctorContainerImageNotifier),
+        firstScreenBackgroundImageLightMode);
     changeColor(ref.read(_appscaffoldColorNotifier), appBeig);
-    changeColor(ref.read(_appTextColorNotifier),appBlack);
-    changeColor(ref.read(_appContainerColorNotifier),appLightBlue);
-    changeColor(ref.read(_appIconColorNotifier),appBlack);
-    changeColor(ref.read(_appHeadingTextColorNotifier),appBlack);
+    changeColor(ref.read(_appTextColorNotifier), appBlack);
+    changeColor(ref.read(_appContainerColorNotifier), appLightBlue);
+    changeColor(ref.read(_appIconColorNotifier), appBlack);
+    changeColor(ref.read(_appHeadingTextColorNotifier), appBlack);
     changeColor(ref.read(_appSectionContainerColorNotifier), appWhite);
-    changeColor(ref.read(_appIconCircleAvatarBgColorNotifier),appWhite);
-    changeColor(ref.read(_appTypeBarBgColorNotifier),appWhite);
-    changeColor(ref.read(_appBoxShadowColorNotifier),appBlack);
-    changeColor(ref.read(_appCategoriesCircleAvatarBgColorNotifier),appLightBlue);
-    changeColor(ref.read(_appUniqueTextColorNotifier),appLightBlue);
-    changeColor(ref.read(_appListContainerColorNotifier),appWhite);
+    changeColor(ref.read(_appIconCircleAvatarBgColorNotifier), appWhite);
+    changeColor(ref.read(_appTypeBarBgColorNotifier), appWhite);
+    changeColor(ref.read(_appBoxShadowColorNotifier), appBlack);
+    changeColor(
+        ref.read(_appCategoriesCircleAvatarBgColorNotifier), appLightBlue);
+    changeColor(ref.read(_appUniqueTextColorNotifier), appLightBlue);
+    changeColor(ref.read(_appListContainerColorNotifier), appWhite);
     changeColor(ref.read(_appBottomBorderColorNotifier), appSlateBlue);
   }
 
   @override
   Widget build(BuildContext context) {
-
     Color appScaffoldColor = ref.watch(appScaffoldColorProvider);
     Color appIconColor = ref.watch(appIconColorProvider);
     Color appContainerColor = ref.watch(appContainerColorProvider);
-    Color appSectionContainerColor = ref.watch(appSectionContainerColorProvider);
+    Color appSectionContainerColor =
+        ref.watch(appSectionContainerColorProvider);
     Color appHeadingTextColor = ref.watch(appHeadingTextColorProvider);
     Color appTextColor = ref.watch(appTextColorProvider);
-  
-    
-    
+    Widget icon = ref.watch(iconProvider);
     int groupValue = ref.watch(groupValueProvider);
     return Scaffold(
       backgroundColor: appScaffoldColor,
@@ -156,7 +162,31 @@ class _DarkModeScreenState extends ConsumerState<DarkModeScreen> {
                 )
               ],
             ),
-          )
+          ),
+        const SpaceBetweenColumnChildren(height: 370),
+        Padding(
+          padding: const EdgeInsets.only(right: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  if (icon == playIcon) {
+                    ref.read(_iconNotifier).state = pauseIcon;
+                  }else {
+                    ref.read(_iconNotifier).state = playIcon;
+                  }},
+                child: Container(
+                  height: 70,
+                  width : 70,
+                  decoration:  BoxDecoration(color: appWhite,borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: icon,
+                ),
+              ),
+            ],
+          ),
+        )
         ],
       )),
     );

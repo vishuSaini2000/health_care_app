@@ -7,3 +7,5 @@ final switchValueProvider = StateProvider<bool>((ref)=> isEnabled);
 final checkBoxValueListProvider = StateProvider<List<bool>>((ref)=>medicineCheckValueList);
 final textDecorationValueListProvider = StateProvider<List<TextDecoration>>((ref)=>textDecorationValueList);
 final textDecorationValueProvider = StateProvider<TextDecoration>((ref)=>textDecorationValueOne);
+final isLoadingValueProvider = StateProvider<bool>((ref)=>isLoading);
+final iconProvider = StateProvider<Widget>((ref)=>playIcon);
